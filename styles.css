@@ -50,16 +50,17 @@ table {
 
 
 section{
-    background-color: cyan;
+    background-color: beige;
     font-size: 2rem;
     text-align: center;
 
-    padding: 20px;
+    padding: 20px 400px 0 400px;
     
 }
 
 h1{
     margin-bottom: 20px;
+	font-weight: 700;
 }
 
 .bookGrid{
