@@ -64,6 +64,7 @@ section{
     font-size: 2rem;
     
 	font-family: "roboto";
+	transition: all 0.1s ease-in-out;
 }
 
 nav{
@@ -112,11 +113,21 @@ nav button:hover{
 	background-color: yellow;
 	border-radius: 10px;
 
+	/* box-shadow: 2px 2px 5px #3b3b35; */
+	text-transform: capitalize;
+}
+
+.card img{
+	object-fit:contain;
+	width: 100%;
+
+	border-radius: 10px;
 	box-shadow: 2px 2px 5px #3b3b35;
 }
 
 .newBookForm{
 	display: flex;
+	visibility:hidden;
 	flex-direction: column;
 	gap: 30px;
 	justify-items: center;
@@ -124,18 +135,22 @@ nav button:hover{
 
 	position: absolute; 
 	left: 50%;
-    transform: translate(-50%, 0);
-	
+    transform: translate(-50%, -50%);
+
+	top: 50%;
+
 	
 	background-color: rgb(63, 63, 58);
 
-	border-radius: 10px;
 
-	padding: 5px;
+	padding: 33px;
 
 	font-size: 1rem;
 	font-weight: 500;
 	color: white;
+
+	border: 11px double white;
+	border-radius: 10px;
 
 	z-index: 2;
 
@@ -148,9 +163,12 @@ nav button:hover{
 }
 
 .newBookForm input{
-	height: 1.5rem;
+	height: 1.7rem;
 	border-radius: 10px;
 	width: 50%;
+
+	font-size: 1.5rem;
+	text-indent: 1rem;
 }
 
 .newBookForm button{

@@ -1,5 +1,11 @@
 let bookGrid = document.querySelector('.bookGrid');
+let section = document.querySelector('section');
+let titleInput = document.querySelector('#titleInput');
+let urlInput = document.querySelector('#urlInput');
+
 const newButton = document.querySelector('.new-book');
+const newBookForm = document.querySelector('.newBookForm');
+const submitButton = document.querySelector('.submitButton');
 
 
 
@@ -24,7 +30,18 @@ let cardCreator = function(){
         myLibrary.forEach((book, index) => {
             
             let newBook = document.createElement('div');
-            newBook.textContent = (myLibrary[`${index}`]).title ;
+
+            let bookTitle = document.createElement('div');
+            let bookImage = document.createElement('img');
+            
+            bookTitle.textContent = (myLibrary[`${index}`]).title ;
+            bookImage.src = (myLibrary[`${index}`]).image ;
+
+            newBook.appendChild(bookTitle);
+            newBook.appendChild(bookImage);
+
+
+            // newBook.textContent = (myLibrary[`${index}`]).title ;
             newBook.classList.add("card");
             bookGrid.appendChild(newBook);
             }
@@ -34,15 +51,33 @@ let cardCreator = function(){
 
 cardCreator();
 
+
+
 newButton.addEventListener('click', function(){
+    section.style.filter = 'blur(10px)';
+
+    newBookForm.style.visibility = 'visible';
+
     
     
+});
+
+newBookForm.addEventListener('submit', function(e){
+    
+    e.preventDefault();
     myLibrary.forEach(function(){
         bookGrid.lastChild.remove();
     });
 
-    curator('Malazan', 'image');
+    let title = titleInput.value;
+    let url = urlInput.value;
+
+    curator(title, url);
     console.log(myLibrary);
 
     cardCreator();
-})
+    
+    newBookForm.style.visibility = 'hidden';
+    section.style.filter = 'none';
+
+});
