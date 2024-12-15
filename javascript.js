@@ -1,31 +1,48 @@
-let section = document.querySelector('.bookGrid');
-
-// let bookObject = document.createElement('div');
-
+let bookGrid = document.querySelector('.bookGrid');
+const newButton = document.querySelector('.new-book');
 
 
 
-let myLibrary = ["hello", "Hi", "back", "moloko", "vitrol", "now", "redead"];
 
-function Book(){
-    // consructor
+
+
+let myLibrary = [{title:'Book1', image:'link'}, {title:'Book2', image:'link'}];
+
+function Book(title, image){
+    this.title = title,
+    this.image = image
 };
 
-function curator(book){
-
+function curator(title, image){
+    let nBook = new Book(title, image);
+    myLibrary.push(nBook);
 };
 
 let cardCreator = function(){
 
-    myLibrary.forEach((book, index) => {
-        
-        let newBook = document.createElement('div');
-        newBook.textContent = myLibrary[`${index}`] ;
-        newBook.classList.add("card");
-        section.appendChild(newBook);
-        }
-    );
-
+    if(myLibrary.length > 0){
+        myLibrary.forEach((book, index) => {
+            
+            let newBook = document.createElement('div');
+            newBook.textContent = (myLibrary[`${index}`]).title ;
+            newBook.classList.add("card");
+            bookGrid.appendChild(newBook);
+            }
+        );
+    }
 }
 
 cardCreator();
+
+newButton.addEventListener('click', function(){
+    
+    
+    myLibrary.forEach(function(){
+        bookGrid.lastChild.remove();
+    });
+
+    curator('Malazan', 'image');
+    console.log(myLibrary);
+
+    cardCreator();
+})

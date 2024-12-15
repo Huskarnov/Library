@@ -31,6 +31,7 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
     box-sizing: border-box;
+	background-color: beige;
 }
 ol, ul {
 	list-style: none;
@@ -53,26 +54,44 @@ table {
 /* /////////////////////////////////////////////////////// */
 
 
+
+
 section{
 	display: grid;
 	grid-template-columns: 1fr;
 	justify-items: center;
-    background-color: beige;
 
     font-size: 2rem;
     
 	font-family: "roboto";
-	
-	
-    
+}
+
+nav{
+	display: flex;
+	flex-direction: column;
+	justify-items: center;
+	align-items: center;
+	/* background-color: aqua; */
+	padding: 40px 0 40px 0;
+	gap: 20px;
 }
 
 h1{
-    margin-bottom: 20px;
+    
 	font-weight: 700;
 	
 }
 
+nav button{
+	font-size: 1.5rem;
+	font-weight: 700;
+
+	padding: 5px 50px;
+	border-radius: 10px;
+}
+nav button:hover{
+	background-color: #e4edb5;
+}
 .bookGrid{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -92,4 +111,51 @@ h1{
 
 	background-color: yellow;
 	border-radius: 10px;
+
+	box-shadow: 2px 2px 5px #3b3b35;
+}
+
+.newBookForm{
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+	justify-items: center;
+	align-items: center;
+
+	position: absolute; 
+	left: 50%;
+    transform: translate(-50%, 0);
+	
+	
+	background-color: rgb(63, 63, 58);
+
+	border-radius: 10px;
+
+	padding: 5px;
+
+	font-size: 1rem;
+	font-weight: 500;
+	color: white;
+
+	z-index: 2;
+
+	width: 500px;
+	height: 500px;
+}
+
+.newBookForm label{
+	font-size: 2rem;
+}
+
+.newBookForm input{
+	height: 1.5rem;
+	border-radius: 10px;
+	width: 50%;
+}
+
+.newBookForm button{
+	font-size: 2rem;
+	font-weight: 500;
+	border-radius: 10px;
+	padding: 5px 40px;
 }
