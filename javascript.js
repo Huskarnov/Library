@@ -11,7 +11,7 @@ const cancelButton = document.querySelector('.cancelButton');
 
 
 
-let myLibrary = [{title:'The Hobbit', image:'https://i.ibb.co/6ywhH6G/hobb.png', read : true}, {title:'The Whispering Throne', image:'https://i.ibb.co/ncgGhVm/2.png'}, {title:'Hide And Seek', image:'https://i.ibb.co/F05DKH1/3.jpg', read : true}];
+let myLibrary = [{title:'Woods', image:'https://i.ibb.co/vPXFgCk/4.png', read : true}, {title:'The Whispering Throne', image:'https://i.ibb.co/ncgGhVm/2.png'}, {title:'Hide And Seek', image:'https://i.ibb.co/F05DKH1/3.jpg', read : true}];
 
 function Book(title, image){ //construcor
     this.title = title,
@@ -42,23 +42,29 @@ let cardCreator = function(){ //render the books
             //--------------------------------------------------------
             bookImage.src = (myLibrary[`${index}`]).image ;
             //--------------------------------------------------------
-            crossButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2c5.53 0 10 4.47 10 10s-4.47 10-10 10S2 17.53 2 12S6.47 2 12 2m3.59 5L12 10.59L8.41 7L7 8.41L10.59 12L7 15.59L8.41 17L12 13.41L15.59 17L17 15.59L13.41 12L17 8.41z"/></svg>';
             crossButton.classList.add('cardCross');
-            crossButton.addEventListener('click', function(event){
+            crossButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2c5.53 0 10 4.47 10 10s-4.47 10-10 10S2 17.53 2 12S6.47 2 12 2m3.59 5L12 10.59L8.41 7L7 8.41L10.59 12L7 15.59L8.41 17L12 13.41L15.59 17L17 15.59L13.41 12L17 8.41z"/></svg>';
+            crossButton.addEventListener('click', function(event){ //deletes book array item and card
             // const childToRemove = bookGrid.children[index];
             const childToRemove = crossButton.parentElement;
-            bookGrid.removeChild(childToRemove);
-            myLibrary.splice(index, 1);
+
+            const childrenArray = bookGrid.children;
+            const rank = Array.prototype.indexOf.call(childrenArray, childToRemove);
+            console.log(rank);
+            myLibrary.splice(rank, 1); //remove from the array
+            console.log(myLibrary);
+
+            
+            bookGrid.removeChild(childToRemove); //remove from the dom parent
             });
             //--------------------------------------------------------
+            readStatus.classList.add('readStatus');
             readStatus.innerHTML ='<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m9 20.42l-6.21-6.21l2.83-2.83L9 14.77l9.88-9.89l2.83 2.83z"/></svg>';
             readStatus.style.color = myLibrary[index].read ? 'green' : 'red';
-            readStatus.classList.add('readStatus');
-
+            
             readStatus.addEventListener('click', function(){
 
                 // readStatus.style.color = 'green' ? 'red' : 'green';
-
                 if(readStatus.style.color == 'red'){
                     readStatus.style.color = 'green'
                 }else{
@@ -95,31 +101,33 @@ let cardCreator = function(){ //render the books
 
 cardCreator();
 
-
+// ////////////////////////////////////////////////////////////////////////////
+// ///////////////////////////FORM EVENTS/////////////////////////////////////
+// ////////////////////////////////////////////////////////////////////////////
 newButton.addEventListener('click', function(){
     section.style.filter = 'blur(10px)';
     newBookForm.style.visibility = 'visible';
 });
 
-cancelButton.addEventListener('click', function(){
+function hideForm(){
     section.style.filter = 'none';
     newBookForm.style.visibility = 'hidden';
+}
+
+cancelButton.addEventListener('click', function(){
+    hideForm();
 });
 
 document.addEventListener('keydown', function(e){
     if(e.key === "Escape"){
-        section.style.filter = 'none';
-        newBookForm.style.visibility = 'hidden';
+        hideForm();
     };
 });
 
 // document.addEventListener('click', function(event){
 //     if(!event.target.closest('.newBookForm') && !newBookForm.checkVisibility()){
-        
 //             section.style.filter = 'none';
 //             newBookForm.style.visibility = 'hidden';
-            
-        
 //     };
 // });
 
@@ -128,10 +136,12 @@ newBookForm.addEventListener('submit', function(e){
     
     //clear cards
     e.preventDefault();
-    myLibrary.forEach(function(){
+    if(myLibrary.length > 0 && bookGrid.hasChildNodes){
+        myLibrary.forEach(function(){
         bookGrid.lastChild.remove();
     });
-
+};
+    
     //create a new book + add it to the array
     let form = document.querySelector('form');
     let formData = new FormData(form);
@@ -145,5 +155,9 @@ newBookForm.addEventListener('submit', function(e){
     //hide the form
     newBookForm.style.visibility = 'hidden';
     section.style.filter = 'none';
-});
 
+    console.log(myLibrary);
+});
+// ////////////////////////////////////////////////////////////////////////////
+// ////////////////////////////////////////////////////////////////////////////
+// ////////////////////////////////////////////////////////////////////////////

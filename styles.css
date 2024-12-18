@@ -1,6 +1,6 @@
 /* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
+v2.0 | 20110126
+License: none (public domain)
 */
 
 html, body, div, span, applet, object, iframe,
@@ -57,14 +57,15 @@ table {
 
 
 section{
-	display: grid;
-	grid-template-columns: 1fr;
+	/* display: grid;
+	grid-template-columns: 1fr; */
 	justify-items: center;
 
     font-size: 2rem;
     
-	font-family: "roboto";
+	font-family: "Montserrat";
 	transition: all 0.1s ease-in-out;
+	
 }
 
 nav{
@@ -72,15 +73,18 @@ nav{
 	flex-direction: column;
 	justify-items: center;
 	align-items: center;
-	/* background-color: aqua; */
+
+	width: 100%;
+
 	padding: 40px 0 40px 0;
 	gap: 20px;
+
+	background-color: #35352c5e;
+
 }
 
 h1{
-    
 	font-weight: 700;
-	
 }
 
 nav button{
@@ -105,25 +109,24 @@ nav button:hover{
 	row-gap: 40px;
 	width: 50vw;	
 	/* max-width: 1500px; */
+	padding: 10px;
 
-
+	
 }
 
 .card{
-	/* display: grid; */
-	/* grid-template-rows: auto; */
 	align-items: center;
 	justify-items: center;
-	/* height: 400x; */
 	position: relative;
 	
-
-
 	border-radius: 10px;
 
 	padding-top: 40px;
-	/* box-shadow: 2px 2px 5px #3b3b35; */
 	cursor: pointer;
+
+	width: 250px;
+
+	user-select: none;
 }
 
 .card:hover{
@@ -135,7 +138,6 @@ nav button:hover{
 	width: 100%;
 	height: 75%;
 	
-
 	border-radius: 10px;
 	box-shadow: 2px 2px 5px #3b3b35;
 }
@@ -147,29 +149,51 @@ nav button:hover{
 
 	font-size: 1.5rem;
 	font-weight: 500;
-	
+
 }
+/* .card div:nth-child(2){
+	
+
+
+} */
+
 .cardCross{
 	position : absolute;
 	top : 0; 
 	left : 7px;
 	color : #8a8585;
 	visibility: hidden;
+
 	
+	border-radius: 50%;
 }
+
+
+
 .readStatus{
 	position : absolute;
 	top : 2rem; 
 	left : 7px;
 	visibility: hidden;
-}
+	border-radius: 50%;
+	align-items: center;
+	justify-items: center;
 
+
+}
+/* .bookGrid .card .readStatus:hover{
+	
+	animation: blink 0.7s ease-in-out 2 ;
+}
+@keyframes blink {
+	0% {color: green;}
+	100% {color: red;}
+} */
 .newBookForm{
 
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
-	/* justify-items: center; */
 	justify-content: center;
 	align-items: center;
 
@@ -181,13 +205,11 @@ nav button:hover{
 
 	top: 50%;
 
-	
-	background-color: #35352c;
+	background-color: #363629;
 
+	padding: 100px 30px;
 
-	padding: 33px;
-
-	font-family: "roboto";
+	font-family: "Montserrat";
 	font-size: 1rem;
 	font-weight: 500;
 	color: white;
@@ -197,8 +219,8 @@ nav button:hover{
 
 	z-index: 2;
 
-	width: 500px;
-	height: 500px;
+	width: 350px;
+	/* height: 500px; */
 }
 
 .newBookForm label{
@@ -217,7 +239,7 @@ nav button:hover{
 }
 
 .newBookForm button{
-	font-size: 2rem;
+	font-size: 1.5rem;
 	font-weight: 500;
 	border-radius: 10px;
 	padding: 5px 40px;
