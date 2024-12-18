@@ -89,49 +89,91 @@ nav button{
 
 	padding: 5px 50px;
 	border-radius: 10px;
+	box-shadow: 2px 2px 5px #3b3b35;
+	border: hidden;
+
+	background-color: white;
 }
 nav button:hover{
-	background-color: #e4edb5;
+	background-color: #dce99c;
 }
 .bookGrid{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     grid-auto-rows: 400px;
-    gap: 30px;
+    column-gap: 20px;
+	row-gap: 40px;
 	width: 50vw;	
 	/* max-width: 1500px; */
 
-    /* background-color: purple; */
+
 }
 
 .card{
-	display: grid;
-	grid-template: 4fr 1fr/ 1fr;
-
+	/* display: grid; */
+	/* grid-template-rows: auto; */
+	align-items: center;
 	justify-items: center;
+	/* height: 400x; */
+	position: relative;
+	
 
-	background-color: yellow;
+
 	border-radius: 10px;
 
+	padding-top: 40px;
 	/* box-shadow: 2px 2px 5px #3b3b35; */
-	text-transform: capitalize;
+	cursor: pointer;
+}
+
+.card:hover{
+	background-color: #dce99c;
 }
 
 .card img{
-	object-fit:contain;
+	object-fit:cover;
 	width: 100%;
+	height: 75%;
+	
 
 	border-radius: 10px;
 	box-shadow: 2px 2px 5px #3b3b35;
 }
 
+.card > div {
+	text-align: center;
+	text-transform: capitalize;
+	margin-top: 10px;
+
+	font-size: 1.5rem;
+	font-weight: 500;
+	
+}
+.cardCross{
+	position : absolute;
+	top : 0; 
+	left : 7px;
+	color : #8a8585;
+	visibility: hidden;
+	
+}
+.readStatus{
+	position : absolute;
+	top : 2rem; 
+	left : 7px;
+	visibility: hidden;
+}
+
 .newBookForm{
+
 	display: flex;
-	visibility:hidden;
 	flex-direction: column;
-	gap: 30px;
-	justify-items: center;
+	gap: 5px;
+	/* justify-items: center; */
+	justify-content: center;
 	align-items: center;
+
+	visibility:hidden;
 
 	position: absolute; 
 	left: 50%;
@@ -140,11 +182,12 @@ nav button:hover{
 	top: 50%;
 
 	
-	background-color: rgb(63, 63, 58);
+	background-color: #35352c;
 
 
 	padding: 33px;
 
+	font-family: "roboto";
 	font-size: 1rem;
 	font-weight: 500;
 	color: white;
@@ -159,7 +202,7 @@ nav button:hover{
 }
 
 .newBookForm label{
-	font-size: 2rem;
+	font-size: 1.5rem;
 }
 
 .newBookForm input{
@@ -169,6 +212,8 @@ nav button:hover{
 
 	font-size: 1.5rem;
 	text-indent: 1rem;
+
+	margin-bottom: 40px;
 }
 
 .newBookForm button{
@@ -176,4 +221,5 @@ nav button:hover{
 	font-weight: 500;
 	border-radius: 10px;
 	padding: 5px 40px;
+	margin-bottom: 10px;
 }
