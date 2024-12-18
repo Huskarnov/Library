@@ -189,6 +189,7 @@ nav button:hover{
 	0% {color: green;}
 	100% {color: red;}
 } */
+
 .newBookForm{
 
 	display: flex;
@@ -227,7 +228,7 @@ nav button:hover{
 	font-size: 1.5rem;
 }
 
-.newBookForm input{
+.newBookForm input:nth-child(2), .newBookForm input:nth-child(4){
 	height: 1.7rem;
 	border-radius: 10px;
 	width: 50%;
@@ -237,6 +238,15 @@ nav button:hover{
 
 	margin-bottom: 40px;
 }
+
+.newBookForm div:nth-child(5){
+	display: flex;
+	justify-items: center;
+	align-items: center;
+	background-color: rebeccapurple;
+}
+
+
 
 .newBookForm button{
 	font-size: 1.5rem;

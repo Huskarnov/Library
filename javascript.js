@@ -19,7 +19,7 @@ function Book(title, image){ //construcor
     this.read = true;
 };
 
-function curator(title, image){ //construct then push
+function curator(title, image, read){ //construct then push
     let nBook = new Book(title, image);
     myLibrary.push(nBook);
 };
@@ -145,9 +145,11 @@ newBookForm.addEventListener('submit', function(e){
     //create a new book + add it to the array
     let form = document.querySelector('form');
     let formData = new FormData(form);
+    // console.log(formData);
     const title = formData.get('title');
     const url = formData.get('url');
-    curator(title, url);
+    const read = formData.get('read');
+    curator(title, url, read);
 
     //refill cards
     cardCreator();
@@ -156,7 +158,6 @@ newBookForm.addEventListener('submit', function(e){
     newBookForm.style.visibility = 'hidden';
     section.style.filter = 'none';
 
-    console.log(myLibrary);
 });
 // ////////////////////////////////////////////////////////////////////////////
 // ////////////////////////////////////////////////////////////////////////////
