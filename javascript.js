@@ -11,16 +11,16 @@ const cancelButton = document.querySelector('.cancelButton');
 
 
 
-let myLibrary = [{title:'Woods', image:'https://i.ibb.co/vPXFgCk/4.png', read : true}, {title:'The Whispering Throne', image:'https://i.ibb.co/ncgGhVm/2.png'}, {title:'Hide And Seek', image:'https://i.ibb.co/F05DKH1/3.jpg', read : true}];
+let myLibrary = [{title:'Woods', image:'https://i.ibb.co/vPXFgCk/4.png', read : true}, {title:'The Whispering Throne', image:'https://i.ibb.co/ncgGhVm/2.png', read : false}, {title:'Hide And Seek', image:'https://i.ibb.co/F05DKH1/3.jpg', read : true}];
 
-function Book(title, image){ //construcor
+function Book(title, image, read){ //construcor
     this.title = title,
     this.image = image,
-    this.read = true;
+    this.read = read
 };
 
 function curator(title, image, read){ //construct then push
-    let nBook = new Book(title, image);
+    let nBook = new Book(title, image, read);
     myLibrary.push(nBook);
 };
 
@@ -45,17 +45,16 @@ let cardCreator = function(){ //render the books
             crossButton.classList.add('cardCross');
             crossButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2c5.53 0 10 4.47 10 10s-4.47 10-10 10S2 17.53 2 12S6.47 2 12 2m3.59 5L12 10.59L8.41 7L7 8.41L10.59 12L7 15.59L8.41 17L12 13.41L15.59 17L17 15.59L13.41 12L17 8.41z"/></svg>';
             crossButton.addEventListener('click', function(event){ //deletes book array item and card
-            // const childToRemove = bookGrid.children[index];
-            const childToRemove = crossButton.parentElement;
-
+            // const currentChild = bookGrid.children[index];
+            const currentChild = crossButton.parentElement;
             const childrenArray = bookGrid.children;
-            const rank = Array.prototype.indexOf.call(childrenArray, childToRemove);
+            const rank = Array.prototype.indexOf.call(childrenArray, currentChild);
             console.log(rank);
             myLibrary.splice(rank, 1); //remove from the array
             console.log(myLibrary);
 
             
-            bookGrid.removeChild(childToRemove); //remove from the dom parent
+            bookGrid.removeChild(currentChild); //remove from the dom parent
             });
             //--------------------------------------------------------
             readStatus.classList.add('readStatus');
@@ -64,11 +63,23 @@ let cardCreator = function(){ //render the books
             
             readStatus.addEventListener('click', function(){
 
+                let currentCard = readStatus.parentElement;
+                let arrayOfCards = bookGrid.children;
+                let rank = Array.prototype.indexOf.call(arrayOfCards, currentCard);
+
+                console.log(rank);
+
                 // readStatus.style.color = 'green' ? 'red' : 'green';
+
                 if(readStatus.style.color == 'red'){
-                    readStatus.style.color = 'green'
+                    readStatus.style.color = 'green';
+                    (myLibrary[rank]).read = true;
+                    console.log(myLibrary[rank].read);
                 }else{
                     readStatus.style.color = 'red';
+                    (myLibrary[rank]).read = false;
+                    console.log(myLibrary[rank].read);
+
                 }
             });
             //--------------------------------------------------------
@@ -148,7 +159,9 @@ newBookForm.addEventListener('submit', function(e){
     // console.log(formData);
     const title = formData.get('title');
     const url = formData.get('url');
-    const read = formData.get('read');
+    const read = (formData.get('read') == 'on')? true : false;
+
+    console.log(read);
     curator(title, url, read);
 
     //refill cards
@@ -157,6 +170,8 @@ newBookForm.addEventListener('submit', function(e){
     //hide the form
     newBookForm.style.visibility = 'hidden';
     section.style.filter = 'none';
+
+    console.log(myLibrary);
 
 });
 // ////////////////////////////////////////////////////////////////////////////

@@ -26,12 +26,18 @@
         <input type="url" name="url" id="urlInput" required >
 
         <div>
-            <label for="read">Read?</label>
-            <input type="checkbox" name="read" id="read">
+            <p>Read?</p>
+            <!-- <input type="checkbox" name="read" id="read"> -->
+            <label class="switch" for="switch">
+                <input type="checkbox" name="read" id="switch">
+                <span class="slider"></span>
+            </label>
         </div>
 
-        <button class="submitButton" type="submit">Submit</button>
-        <button class="cancelButton" type="button">Cancel</button>
+        <div>
+            <button class="submitButton" type="submit">Submit</button>
+            <button class="cancelButton" type="button">Cancel</button>
+        </div>
 
         
     </form>
