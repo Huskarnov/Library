@@ -25,9 +25,8 @@
         <label for="urlInput">Image URL</label>
         <input type="url" name="url" id="urlInput" required >
 
-        <div>
+        <div class="checkbox">
             <p>Read?</p>
-            <!-- <input type="checkbox" name="read" id="read"> -->
             <label class="switch" for="switch">
                 <input type="checkbox" name="read" id="switch">
                 <span class="slider"></span>
@@ -42,16 +41,27 @@
         
     </form>
 
+        <div class="tooltip">
+            Not read
+        </div>
+
+    <!-- /////////////////////////////////////////////////////// -->
+    <!-- /////////////////////////////////////////////////////// -->
     
     <section>
         <nav>
-            <h1>The Library</h1>
-            <button class="new-book">New Book</button>
+            <img src="images/logos.png" alt="Book logo">
+
+            <div>My Library</div>
+
+            <button class="new-book">New<br>Book</button>
+            
         </nav>
         
-        <div class="bookGrid">
+        <div class="bookGridContainer">
+            <div class="bookGrid">
             
-            
+            </div>
         </div>
         
     </section>

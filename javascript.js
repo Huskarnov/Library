@@ -1,5 +1,6 @@
 let section = document.querySelector('section');
 let bookGrid = document.querySelector('.bookGrid');
+let tooltip = document.querySelector('.tooltip');
 
 const newButton = document.querySelector('.new-book');
 const newBookForm = document.querySelector('.newBookForm');
@@ -45,16 +46,16 @@ let cardCreator = function(){ //render the books
             crossButton.classList.add('cardCross');
             crossButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2c5.53 0 10 4.47 10 10s-4.47 10-10 10S2 17.53 2 12S6.47 2 12 2m3.59 5L12 10.59L8.41 7L7 8.41L10.59 12L7 15.59L8.41 17L12 13.41L15.59 17L17 15.59L13.41 12L17 8.41z"/></svg>';
             crossButton.addEventListener('click', function(event){ //deletes book array item and card
-            // const currentChild = bookGrid.children[index];
+            
+            if(confirm('Delete the Book?')){
+                // const currentChild = bookGrid.children[index];
             const currentChild = crossButton.parentElement;
             const childrenArray = bookGrid.children;
             const rank = Array.prototype.indexOf.call(childrenArray, currentChild);
-            console.log(rank);
-            myLibrary.splice(rank, 1); //remove from the array
-            console.log(myLibrary);
 
-            
+            myLibrary.splice(rank, 1); //remove from the array
             bookGrid.removeChild(currentChild); //remove from the dom parent
+                    };
             });
             //--------------------------------------------------------
             readStatus.classList.add('readStatus');
@@ -63,12 +64,12 @@ let cardCreator = function(){ //render the books
             
             readStatus.addEventListener('click', function(){
 
-                let currentCard = readStatus.parentElement;
-                let arrayOfCards = bookGrid.children;
-                let rank = Array.prototype.indexOf.call(arrayOfCards, currentCard);
+                const currentCard = readStatus.parentElement;
+                const arrayOfCards = bookGrid.children;
+                const rank = Array.prototype.indexOf.call(arrayOfCards, currentCard);
 
                 console.log(rank);
-
+                
                 // readStatus.style.color = 'green' ? 'red' : 'green';
 
                 if(readStatus.style.color == 'red'){
@@ -79,8 +80,24 @@ let cardCreator = function(){ //render the books
                     readStatus.style.color = 'red';
                     (myLibrary[rank]).read = false;
                     console.log(myLibrary[rank].read);
-
                 }
+
+                tooltip.innerHTML = (readStatus.style.color == 'red') ? 'Not read' : 'Read';
+            });
+
+            readStatus.addEventListener('mouseover', function(){
+
+                let rect = readStatus.getBoundingClientRect();
+
+                tooltip.style.top = rect.top + 'px';
+                tooltip.style.left = rect.left - 90 +  'px';
+                tooltip.innerHTML = (readStatus.style.color == 'red' )? 'Not read' : 'Read';
+                
+                tooltip.style.visibility = 'visible';
+            });
+
+            readStatus.addEventListener('mouseleave', function(){
+                tooltip.style.visibility = 'hidden';
             });
             //--------------------------------------------------------
             newBook.appendChild(bookImage);
@@ -118,9 +135,26 @@ cardCreator();
 newButton.addEventListener('click', function(){
     section.style.filter = 'blur(10px)';
     newBookForm.style.visibility = 'visible';
+
+    newButton.classList.add('nav-Button-click');
+    setTimeout(() => {
+    newButton.classList.remove('nav-Button-click');
+        
+    }, 50);
 });
 
 function hideForm(){
+    let sliderBox = newBookForm.querySelector('.slider');
+    let switchBox = newBookForm.querySelector('.switch');
+
+    sliderBox.style.display = 'none';
+    switchBox.style.display = 'none';
+
+    setTimeout(() => {
+        sliderBox.style.display = 'block';
+    switchBox.style.display = 'block';
+    }, 25);
+
     section.style.filter = 'none';
     newBookForm.style.visibility = 'hidden';
 }
